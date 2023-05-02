@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { Card, Row, Col, Modal, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { Card, Row, Col, Modal } from 'antd';
 import { DeleteOutlined, FolderViewOutlined } from '@ant-design/icons';
 import axios from "axios";
 
 const OwnerItem = ({ brandName, location, contactEmail, contactNumber, id, reload }) => {
     const [visible, setVisible] = useState(false);
+    const navigate = useNavigate();
 
     const deleteOwner = () => {
         setVisible(true);
     }
 
     const viewOwner = () => {
-        console.log('view')
+        navigate(`/owner/${id}`)
     }
 
     const handleOk = async () => {
