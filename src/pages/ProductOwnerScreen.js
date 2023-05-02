@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import OwnerItem from "../components/OwnerItem";
 
 const ProductOwnerScreen = () => {
+    const [data, setData] = useState([]);
+
+    async function fetchData() {
+        const response = await axios.get('http://localhost:4000/owner');
+        const ownerData = response.data.owners;
+        setData(ownerData);
+    }
+
+    useEffect(() => {
+        fetchData();
+    },[]);
+
+    const setReloadPage = () => {
+        fetchData();
+    }
+
     return(
         <div>
-            <h1>product owner screen</h1>
+            { data.map(owner => {
+               return(
+                   <OwnerItem key={ owner._id } brandName={ owner.brandName } location={ owner.location }
+                              contactNumber={ owner.contactNumber } contactEmail={ owner.contactEmail }
+                              id={ owner._id } reload = { setReloadPage }/>
+               )
+            }) }
         </div>
     )
 }
