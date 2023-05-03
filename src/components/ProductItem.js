@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import { Card, Row, Col, Modal } from 'antd';
 import {DeleteOutlined, FolderViewOutlined} from "@ant-design/icons";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const ProductItem = ({ name, description, ownerId, prodId, reload }) => {
     const [visible, setVisible] = useState(false);
+    const navigator = useNavigate();
 
     const handleOk = async () => {
         try{
@@ -24,6 +26,10 @@ const ProductItem = ({ name, description, ownerId, prodId, reload }) => {
         setVisible(true);
     }
 
+    const selectProduct = () => {
+        navigator(`/product/${prodId}`);
+    }
+
     return(
         <div>
             <Modal
@@ -35,7 +41,7 @@ const ProductItem = ({ name, description, ownerId, prodId, reload }) => {
                 <p>are you sure about deleting this product record !!!</p>
             </Modal>
             <Card title={ name } style={{ width: 600, marginTop: 16 }} actions={[
-                <FolderViewOutlined key="view" onClick={ () => {} }/>,
+                <FolderViewOutlined key="view" onClick={ selectProduct }/>,
                 <DeleteOutlined key="delete" onClick={ deleteProduct }/>,
             ]}>
                 <div>

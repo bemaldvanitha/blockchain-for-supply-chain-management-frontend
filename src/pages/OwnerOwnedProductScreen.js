@@ -9,6 +9,7 @@ const OwnerOwnedProductScreen = () => {
     const [data, setData] = useState({});
     const [productData, setProductData] = useState([]);
     const { id } = useParams();
+    //console.log(id)
 
     async function fetchData() {
         const response = await axios.get(`http://localhost:4000/owner/${id}`);
@@ -17,6 +18,7 @@ const OwnerOwnedProductScreen = () => {
 
         const response2 = await axios.get(`http://localhost:4000/product/product-owner/${id}`);
         const prodData = response2.data.prodList;
+        //console.log(prodData)
         setProductData(prodData);
     }
 
@@ -24,7 +26,7 @@ const OwnerOwnedProductScreen = () => {
         await fetchData();
     }
 
-    console.log(data)
+    //console.log(productData)
 
     useEffect(() => {
         fetchData();
@@ -44,11 +46,13 @@ const OwnerOwnedProductScreen = () => {
             <Col span={12}>
                 <h1>Products</h1>
                 { productData.map(product => {
-                    console.log(product)
-                    return(
-                        <ProductItem key={ product._id } prodId={ product._id } name={ product.name }
-                                     description={'blah blah blah'} ownerId={id} reload={ reloadData }/>
-                    )
+                    //console.log(product)
+                    if(product !== null) {
+                        return (
+                            <ProductItem key={product._id} prodId={product._id} name={product.name}
+                                         description={'blah blah blah'} ownerId={id} reload={reloadData}/>
+                        )
+                    }
                 })}
             </Col>
         </Row>
