@@ -23,20 +23,16 @@ const SelectedProductScreen = () => {
     return(
         <div>
             <Row>
-                <Col>
+                <Col span={10}>
                     <h1>{ data.name }</h1>
-                </Col>
-                <Col>
-                    <ProductAddedInfo id={id}/>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
                     { data.blockchain !== undefined && data.blockchain.map(block => {
                         return(
                             <BlockInfo block={ block.data }/>
                         )
                     }) }
+                </Col>
+                <Col span={14}>
+                    <ProductAddedInfo id={id}/>
                 </Col>
             </Row>
         </div>

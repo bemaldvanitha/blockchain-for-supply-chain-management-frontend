@@ -7,9 +7,12 @@ import OwnerOwnedProductScreen from "./pages/OwnerOwnedProductScreen";
 import SelectedProductScreen from "./pages/SelectedProductScreen";
 import AddProductScreen from "./pages/AddProduct";
 
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
       <div>
+          <Navbar/>
         <Routes>
             <Route path={'/'} element={ <ProductOwnerScreen/> }/>
             <Route path={'/add-owner'} element={ <ProductOwnerAddScreen/> }/>
