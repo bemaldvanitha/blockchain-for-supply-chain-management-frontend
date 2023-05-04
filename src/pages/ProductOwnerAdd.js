@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from 'antd';
 import axios from "axios";
+import '../styles/ProductOwnerAdd.css';
 
 const layout = {
     labelCol: {
@@ -43,7 +44,7 @@ const ProductOwnerAddScreen = () => {
     };
 
     return(
-        <div>
+        <div className={'container'}>
             <Form
                 {...layout}
                 name="basic"
@@ -56,6 +57,7 @@ const ProductOwnerAddScreen = () => {
                 <Form.Item
                     label="Brand Name"
                     name="brandName"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -68,6 +70,7 @@ const ProductOwnerAddScreen = () => {
 
                 <Form.Item
                     label="location"
+                    className={'form-item'}
                     name="location"
                     rules={[
                         {
@@ -81,6 +84,7 @@ const ProductOwnerAddScreen = () => {
 
                 <Form.Item
                     label="Contact Number"
+                    className={'form-item'}
                     name="contactNumber"
                     rules={[
                         {
@@ -94,6 +98,7 @@ const ProductOwnerAddScreen = () => {
 
                 <Form.Item
                     label="Contact Email"
+                    className={'form-item'}
                     name="contactEmail"
                     rules={[
                         {
@@ -106,8 +111,8 @@ const ProductOwnerAddScreen = () => {
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Submit
+                    <Button type="primary" className={'custom-button'} htmlType="submit">
+                        Add product owner
                     </Button>
                 </Form.Item>
             </Form>
