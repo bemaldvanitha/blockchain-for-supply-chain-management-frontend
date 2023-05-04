@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import '../styles/Owner.css';
 
 import OwnerItem from "../components/OwnerItem";
 
