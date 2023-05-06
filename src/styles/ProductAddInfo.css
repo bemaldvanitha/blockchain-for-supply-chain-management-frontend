@@ -4,4 +4,36 @@
 
 .extraButton {
     padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    padding-left: 10px;
+    padding-top: 25px;
+}
+
+.dateContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkboxGrp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background-color: rebeccapurple;
+    color: white;
+    font-family: "Comic Sans MS", serif;
+}
+
+.button2 {
+    background-color: coral;
+    color: white;
+    font-family: "Comic Sans MS", serif;
 }
