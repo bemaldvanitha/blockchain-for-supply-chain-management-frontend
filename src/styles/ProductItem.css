@@ -1,0 +1,26 @@
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: "Comic Sans MS", serif;
+    font-style: italic;
+    font-size: 18px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #ff9900;
+}
+
+.icon:hover {
+    transform: scale(1.4); /* increase size on hover */
+    transition: transform 0.5s ease-in-out; /* add transition effect */
+}

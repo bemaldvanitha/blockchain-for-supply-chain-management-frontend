@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import { Row, Col } from 'antd';
+import '../styles/OwnerOwnedProduct.css';
 
 import ProductItem from "../components/ProductItem";
 
@@ -33,14 +34,16 @@ const OwnerOwnedProductScreen = () => {
     },[]);
 
     return(
-        <Row gutter={16}>
+        <Row gutter={16} className={'container-block'}>
             <Col span={12}>
-                <h1>Owner Detail</h1>
-                <div>
-                    <p>Brand - { data.brandName }</p>
-                    <p>Email - { data.contactEmail }</p>
-                    <p>Location - { data.location }</p>
-                    <p>Number - { data.contactNumber }</p>
+                <div className={'owner-info'}>
+                    <h1 className={'block-title'}>Owner Detail</h1>
+                    <div>
+                        <p className={'block-text'}>Brand - { data.brandName }</p>
+                        <p className={'block-text'}>Email - { data.contactEmail }</p>
+                        <p className={'block-text'}>Location - { data.location }</p>
+                        <p className={'block-text'}>Number - { data.contactNumber }</p>
+                    </div>
                 </div>
             </Col>
             <Col span={12}>

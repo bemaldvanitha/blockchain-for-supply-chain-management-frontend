@@ -65,7 +65,7 @@ const ProductOwnerAddScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={brandName} onChange={(e) => setBrandName(e.target.value)}/>
+                    <Input placeholder={'Enter brand name'} value={brandName} onChange={(e) => setBrandName(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -79,7 +79,7 @@ const ProductOwnerAddScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={location} onChange={(e) => setLocation(e.target.value)}/>
+                    <Input placeholder={'Enter location'} value={location} onChange={(e) => setLocation(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -93,7 +93,8 @@ const ProductOwnerAddScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={contactNumber} onChange={(e) => setContactNumber(e.target.value)}/>
+                    <Input placeholder={'Enter contact number'} value={contactNumber}
+                           onChange={(e) => setContactNumber(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -107,7 +108,8 @@ const ProductOwnerAddScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={contactEmail} onChange={(e) => setContactEmail(e.target.value)}/>
+                    <Input placeholder={'Enter contact email'} value={contactEmail}
+                           onChange={(e) => setContactEmail(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>

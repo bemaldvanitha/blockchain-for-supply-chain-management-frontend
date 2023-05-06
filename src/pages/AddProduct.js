@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import {Button, Form, Input} from "antd";
 import axios from "axios";
+import '../styles/AddProduct.css';
 
 const layout = {
     labelCol: {
@@ -45,7 +46,7 @@ const AddProductScreen = () => {
     };
 
     return(
-        <div>
+        <div className={'container'}>
             <Form
                 {...layout}
                 name="basic"
@@ -58,6 +59,7 @@ const AddProductScreen = () => {
                 <Form.Item
                     label="name"
                     name="name"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -65,12 +67,13 @@ const AddProductScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={name} onChange={(e) => setName(e.target.value)}/>
+                    <Input placeholder={'Enter product name'} value={name} onChange={(e) => setName(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Description"
                     name="description"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -78,12 +81,14 @@ const AddProductScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    <Input placeholder={'Enter description'}
+                           value={description} onChange={(e) => setDescription(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Brand"
                     name="brand"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -91,12 +96,13 @@ const AddProductScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={brand} onChange={(e) => setBrand(e.target.value)}/>
+                    <Input placeholder={'Enter brand'} value={brand} onChange={(e) => setBrand(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Quantity"
                     name="quantity"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -104,12 +110,14 @@ const AddProductScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
+                    <Input placeholder={'Enter product quantity'} value={quantity}
+                           onChange={(e) => setQuantity(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Price"
                     name="price"
+                    className={'form-item'}
                     rules={[
                         {
                             required: true,
@@ -117,11 +125,12 @@ const AddProductScreen = () => {
                         },
                     ]}
                 >
-                    <Input value={price} onChange={(e) => setPrice(e.target.value)}/>
+                    <Input placeholder={'Enter product price'} value={price}
+                           onChange={(e) => setPrice(e.target.value)}/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <Button className={'custom-button'} type="primary" htmlType="submit">
                         Add Product
                     </Button>
                 </Form.Item>

@@ -40,12 +40,14 @@ const ProductItem = ({ name, description, ownerId, prodId, reload }) => {
             >
                 <p>are you sure about deleting this product record !!!</p>
             </Modal>
-            <Card title={ name } style={{ width: 600, marginTop: 16 }} actions={[
-                <FolderViewOutlined key="view" onClick={ selectProduct }/>,
-                <DeleteOutlined key="delete" onClick={ deleteProduct }/>,
+            <Card title={ <h3 className="card-title">{ name }</h3> } style={{ width: 600, marginTop: 16 }} actions={[
+                <FolderViewOutlined className={'icon'} key="view" onClick={ selectProduct }
+                                    style={{ fontSize: '24px', color: '#4169E1' }}/>,
+                <DeleteOutlined className={'icon'} key="delete" onClick={ deleteProduct }
+                                style={{ fontSize: '24px', color: '#FF4500' }}/>,
             ]}>
                 <div>
-                    <p>Description - { description }</p>
+                    <p className={'card-text'}>Description - { description }</p>
                 </div>
             </Card>
         </div>
