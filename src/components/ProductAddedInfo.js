@@ -133,7 +133,7 @@ const ProductAddedInfo = ({ id }) => {
                 </div>
                 <div>
                     { nutritionInfo.map((value, index) => (
-                        <Input value={value} placeholder={'nutrition'}
+                        <Input value={value} placeholder={'nutrition'} key={index}
                                onChange={(event) => handleNutritionChange(event, index)}/>
                     ))}
                 </div>
@@ -146,7 +146,7 @@ const ProductAddedInfo = ({ id }) => {
                 </div>
                 <div>
                     { ingredients.map((value, index) => (
-                        <Input value={value} placeholder={'ingredient'}
+                        <Input value={value} placeholder={'ingredient'} key={index}
                                onChange={(event) => handleIngredientChange(event, index)}/>
                     ))}
                 </div>

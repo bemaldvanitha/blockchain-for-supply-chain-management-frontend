@@ -12,13 +12,13 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
       <div>
-          <Navbar/>
+
         <Routes>
             <Route path={'/'} element={ <ProductOwnerScreen/> }/>
             <Route path={'/add-owner'} element={ <ProductOwnerAddScreen/> }/>
             <Route path={'/owner/:id'} element={ <OwnerOwnedProductScreen/> }/>
             <Route path={'/product/:id'} element={ <SelectedProductScreen/> }/>
-            <Route path={'/add-product'} element={ <AddProductScreen/> }/>
+            <Route path={'/add-product/:id'} element={ <AddProductScreen/> }/>
         </Routes>
       </div>
   );

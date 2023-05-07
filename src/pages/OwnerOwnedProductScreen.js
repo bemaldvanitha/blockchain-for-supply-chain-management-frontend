@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import '../styles/OwnerOwnedProduct.css';
 
 import ProductItem from "../components/ProductItem";
+import Navbar from "../components/Navbar";
 
 const OwnerOwnedProductScreen = () => {
     const [data, setData] = useState({});
@@ -34,31 +35,34 @@ const OwnerOwnedProductScreen = () => {
     },[]);
 
     return(
-        <Row gutter={16} className={'container-block'}>
-            <Col span={12}>
-                <div className={'owner-info'}>
-                    <h1 className={'block-title'}>Owner Detail</h1>
-                    <div>
-                        <p className={'block-text'}>Brand - { data.brandName }</p>
-                        <p className={'block-text'}>Email - { data.contactEmail }</p>
-                        <p className={'block-text'}>Location - { data.location }</p>
-                        <p className={'block-text'}>Number - { data.contactNumber }</p>
+        <div>
+            <Navbar isAddProd={ true } isAddOwner={ false } ownerId={ id }/>
+            <Row gutter={16} className={'container-block'}>
+                <Col span={12}>
+                    <div className={'owner-info'}>
+                        <h1 className={'block-title'}>Owner Detail</h1>
+                        <div>
+                            <p className={'block-text'}>Brand - { data.brandName }</p>
+                            <p className={'block-text'}>Email - { data.contactEmail }</p>
+                            <p className={'block-text'}>Location - { data.location }</p>
+                            <p className={'block-text'}>Number - { data.contactNumber }</p>
+                        </div>
                     </div>
-                </div>
-            </Col>
-            <Col span={12}>
-                <h1>Products</h1>
-                { productData.map(product => {
-                    //console.log(product)
-                    if(product !== null) {
-                        return (
-                            <ProductItem key={product._id} prodId={product._id} name={product.name}
-                                         description={'blah blah blah'} ownerId={id} reload={reloadData}/>
-                        )
-                    }
-                })}
-            </Col>
-        </Row>
+                </Col>
+                <Col span={12}>
+                    <h1>Products</h1>
+                    { productData.map(product => {
+                        //console.log(product)
+                        if(product !== null) {
+                            return (
+                                <ProductItem key={product._id} prodId={product._id} name={product.name}
+                                             description={'blah blah blah'} ownerId={id} reload={reloadData}/>
+                            )
+                        }
+                    })}
+                </Col>
+            </Row>
+        </div>
     )
 }
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import '../styles/Owner.css';
 
 import OwnerItem from "../components/OwnerItem";
+import Navbar from "../components/Navbar";
 
 const ProductOwnerScreen = () => {
     const [data, setData] = useState([]);
@@ -23,6 +24,7 @@ const ProductOwnerScreen = () => {
 
     return(
         <div>
+            <Navbar isAddProd={ false } isAddOwner={ true }/>
             { data.map(owner => {
                return(
                    <OwnerItem key={ owner._id } brandName={ owner.brandName } location={ owner.location }

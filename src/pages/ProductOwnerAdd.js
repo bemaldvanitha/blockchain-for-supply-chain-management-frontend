@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button } from 'antd';
 import axios from "axios";
 import '../styles/ProductOwnerAdd.css';
+import Navbar from "../components/Navbar";
 
 const layout = {
     labelCol: {
@@ -44,80 +45,83 @@ const ProductOwnerAddScreen = () => {
     };
 
     return(
-        <div className={'container'}>
-            <Form
-                {...layout}
-                name="basic"
-                initialValues={{
-                    remember: true,
-                }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-            >
-                <Form.Item
-                    label="Brand Name"
-                    name="brandName"
-                    className={'form-item'}
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please enter your brand name!',
-                        },
-                    ]}
+        <div>
+            <Navbar isAddProd={ false } isAddOwner={ false }/>
+            <div className={'container'}>
+                <Form
+                    {...layout}
+                    name="basic"
+                    initialValues={{
+                        remember: true,
+                    }}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
                 >
-                    <Input placeholder={'Enter brand name'} value={brandName} onChange={(e) => setBrandName(e.target.value)}/>
-                </Form.Item>
+                    <Form.Item
+                        label="Brand Name"
+                        name="brandName"
+                        className={'form-item'}
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please enter your brand name!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder={'Enter brand name'} value={brandName} onChange={(e) => setBrandName(e.target.value)}/>
+                    </Form.Item>
 
-                <Form.Item
-                    label="location"
-                    className={'form-item'}
-                    name="location"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please enter your product location!',
-                        },
-                    ]}
-                >
-                    <Input placeholder={'Enter location'} value={location} onChange={(e) => setLocation(e.target.value)}/>
-                </Form.Item>
+                    <Form.Item
+                        label="location"
+                        className={'form-item'}
+                        name="location"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please enter your product location!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder={'Enter location'} value={location} onChange={(e) => setLocation(e.target.value)}/>
+                    </Form.Item>
 
-                <Form.Item
-                    label="Contact Number"
-                    className={'form-item'}
-                    name="contactNumber"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please enter your Contact number!',
-                        },
-                    ]}
-                >
-                    <Input placeholder={'Enter contact number'} value={contactNumber}
-                           onChange={(e) => setContactNumber(e.target.value)}/>
-                </Form.Item>
+                    <Form.Item
+                        label="Contact Number"
+                        className={'form-item'}
+                        name="contactNumber"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please enter your Contact number!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder={'Enter contact number'} value={contactNumber}
+                               onChange={(e) => setContactNumber(e.target.value)}/>
+                    </Form.Item>
 
-                <Form.Item
-                    label="Contact Email"
-                    className={'form-item'}
-                    name="contactEmail"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please enter your Contact Number!',
-                        },
-                    ]}
-                >
-                    <Input placeholder={'Enter contact email'} value={contactEmail}
-                           onChange={(e) => setContactEmail(e.target.value)}/>
-                </Form.Item>
+                    <Form.Item
+                        label="Contact Email"
+                        className={'form-item'}
+                        name="contactEmail"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please enter your Contact Number!',
+                            },
+                        ]}
+                    >
+                        <Input placeholder={'Enter contact email'} value={contactEmail}
+                               onChange={(e) => setContactEmail(e.target.value)}/>
+                    </Form.Item>
 
-                <Form.Item {...tailLayout}>
-                    <Button type="primary" className={'custom-button'} htmlType="submit">
-                        Add product owner
-                    </Button>
-                </Form.Item>
-            </Form>
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" className={'custom-button'} htmlType="submit">
+                            Add product owner
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </div>
         </div>
     )
 }

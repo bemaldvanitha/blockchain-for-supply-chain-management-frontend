@@ -4,8 +4,7 @@ import { Row, Col, Button, Avatar } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import '../styles/Navbar.css';
 
-const Navbar = ({  }) => {
-
+const Navbar = ({ isAddProd, isAddOwner, ownerId = '' }) => {
     return(
         <div>
             <div className={'header'}>
@@ -19,11 +18,16 @@ const Navbar = ({  }) => {
                         </Link>
                     </Col>
                     <Col span={17}>
-                        <Link to={'/add-product'}>
+                        {isAddProd && <Link to={`/add-product/${ownerId}`}>
                             <Button className={'add-product-button'}>
                                 Add your product
                             </Button>
-                        </Link>
+                        </Link>}
+                        {isAddOwner && <Link to={'/add-owner'}>
+                            <Button className={'add-product-button'}>
+                                Add new Owner
+                            </Button>
+                        </Link>}
                     </Col>
                     <Col span={1}>
                         <Avatar size="large" icon={<UserOutlined />} />

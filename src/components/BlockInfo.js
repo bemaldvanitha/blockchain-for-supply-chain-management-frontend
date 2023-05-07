@@ -1,160 +1,161 @@
 import React from "react";
-import { Row, Col } from 'antd';
+import { Row, Col, Divider } from 'antd';
+
+import '../styles/BlockInfo.css';
 
 const BlockInfo = ({ block }) => {
     //console.log(block)
-    console.log(block.artificialFlavorings);
     return(
-        <div>
-            <Row>
+        <div className={'sub-block'}>
+            {block.expDate && <Row>
                 <Col>
-                    <p>Expire date - </p>
+                    <p className={'block-text'}>Expire date - </p>
                 </Col>
                 <Col>
-                    <p>{ block.expDate }</p>
+                    <p className={'block-text'}>{ block.expDate }</p>
                 </Col>
-            </Row>
-            <Row>
+            </Row> }
+            {block.manDate && <Row>
                 <Col>
-                    <p>Manufacture date - </p>
-                </Col>
-                <Col>
-                    <p>{ block.manDate }</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Store conditions - </p>
+                    <p className={'block-text'}>Manufacture date - </p>
                 </Col>
                 <Col>
-                    <p>{ block.storeConditions }</p>
+                    <p className={'block-text'}>{ block.manDate }</p>
                 </Col>
-            </Row>
-            <Row>
+            </Row> }
+            {block.storeConditions && <Row>
                 <Col>
-                    <p>Health warnings - </p>
-                </Col>
-                <Col>
-                    <p>{ block.healthWarnings }</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Sugar content - </p>
+                    <p className={'block-text'}>Store conditions - </p>
                 </Col>
                 <Col>
-                    <p>{ block.sugarContent }</p>
+                    <p className={'block-text'}>{ block.storeConditions }</p>
                 </Col>
-            </Row>
-            <Row>
+            </Row> }
+            {block.healthWarnings && <Row>
                 <Col>
-                    <p>Fat content - </p>
-                </Col>
-                <Col>
-                    <p>{ block.fatContent }</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Salt content - </p>
+                    <p className={'block-text'}>Health warnings - </p>
                 </Col>
                 <Col>
-                    <p>{ block.saltContent }</p>
+                    <p className={'block-text'}>{ block.healthWarnings }</p>
                 </Col>
-            </Row>
-            <Row>
+            </Row> }
+            {block.sugarContent && <Row>
                 <Col>
-                    <p>Quality Certifications - </p>
+                    <p className={'block-text'}>Sugar content - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.sugarContent }</p>
+                </Col>
+            </Row> }
+            {block.fatContent && <Row>
+                <Col>
+                    <p className={'block-text'}>Fat content - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.fatContent }</p>
+                </Col>
+            </Row> }
+            {block.saltContent && <Row>
+                <Col>
+                    <p className={'block-text'}>Salt content - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.saltContent }</p>
+                </Col>
+            </Row> }
+            {block.qualityCertifications && <Row>
+                <Col>
+                    <p className={'block-text'}>Quality Certifications - </p>
                 </Col>
                 <Col>
                     {
                         block.qualityCertifications && block.qualityCertifications.map(certi => (
-                            <p>{ certi }</p>
+                            <p className={'block-text'} key={certi}> * { certi }</p>
                         ))
                     }
                 </Col>
-            </Row>
-            <Row>
+            </Row>}
+            {block.nutritionInfo && <Row>
                 <Col>
-                    <p>Nutrition Info - </p>
+                    <p className={'block-text'}>Nutrition Info - </p>
                 </Col>
                 <Col>
                     {
                         block.nutritionInfo && block.nutritionInfo.map(nutri => (
-                            <p>{ nutri }</p>
+                            <p className={'block-text'} key={nutri}> * { nutri }</p>
                         ))
                     }
                 </Col>
-            </Row>
-            <Row>
+            </Row>}
+            {block.ingredients && <Row>
                 <Col>
-                    <p>Ingredients Info - </p>
+                    <p className={'block-text'}>Ingredients Info - </p>
                 </Col>
                 <Col>
                     {
                         block.ingredients && block.ingredients.map(ingre => (
-                            <p>{ ingre }</p>
+                            <p className={'block-text'} key={ingre}> * { ingre }</p>
                         ))
                     }
                 </Col>
-            </Row>
+            </Row>}
+            {block.alergenInfo && <Row>
+                <Col>
+                    <p className={'block-text'}>Alergen Information - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.alergenInfo }</p>
+                </Col>
+            </Row>}
             <Row>
                 <Col>
-                    <p>Alergen Information - </p>
+                    <p className={'block-text'}>Artificial Flavorings - </p>
                 </Col>
                 <Col>
-                    <p>{ block.alergenInfo }</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>Artificial Flavorings - </p>
-                </Col>
-                <Col>
-                    <p>{ block.artificialFlavorings && block.artificialFlavorings.toString() }</p>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <p>GMO - </p>
-                </Col>
-                <Col>
-                    <p>{ block.gmo && block.gmo.toString() }</p>
+                    <p className={'block-text'}>{ block.artificialFlavorings === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <p>Preservation - </p>
+                    <p className={'block-text'}>GMO - </p>
                 </Col>
                 <Col>
-                    <p>{ block.preservation && block.preservation.toString() }</p>
+                    <p className={'block-text'}>{ block.gmo === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <p>Vegan - </p>
+                    <p className={'block-text'}>Preservation - </p>
                 </Col>
                 <Col>
-                    <p>{ block.vegan && block.vegan.toString() }</p>
+                    <p className={'block-text'}>{ block.preservation === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <p>Vegetarian - </p>
+                    <p className={'block-text'}>Vegan - </p>
                 </Col>
                 <Col>
-                    <p>{ block.vegetarian && block.vegetarian.toString() }</p>
+                    <p className={'block-text'}>{ block.vegan === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <p>Halal - </p>
+                    <p className={'block-text'}>Vegetarian - </p>
                 </Col>
                 <Col>
-                    <p>{ block.halal && block.halal.toString() }</p>
+                    <p className={'block-text'}>{ block.vegetarian === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
-
+            <Row>
+                <Col>
+                    <p className={'block-text'}>Halal - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.halal === true ? 'True' : 'False' }</p>
+                </Col>
+            </Row>
+            <Divider/>
         </div>
     )
 }

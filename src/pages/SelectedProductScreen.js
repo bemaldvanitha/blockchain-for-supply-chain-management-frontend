@@ -5,6 +5,8 @@ import { Col, Row } from 'antd';
 
 import BlockInfo from "../components/BlockInfo";
 import ProductAddedInfo from "../components/ProductAddedInfo";
+import '../styles/BlockInfo.css';
+import Navbar from "../components/Navbar";
 
 const SelectedProductScreen = () => {
     const [data, setData] = useState({});
@@ -22,14 +24,17 @@ const SelectedProductScreen = () => {
 
     return(
         <div>
+            <Navbar isAddProd={ false } isAddOwner={ false }/>
             <Row>
                 <Col span={10}>
-                    <h1>{ data.name }</h1>
-                    { data.blockchain !== undefined && data.blockchain.map(block => {
-                        return(
-                            <BlockInfo block={ block.data }/>
-                        )
-                    }) }
+                    <div className={'block-info'}>
+                        <h1 className={'block-title'}>{ data.name }</h1>
+                        { data.blockchain !== undefined && data.blockchain.map(block => {
+                            return(
+                                <BlockInfo block={ block.data } key={ JSON.stringify(block.data) }/>
+                            )
+                        }) }
+                    </div>
                 </Col>
                 <Col span={14}>
                     <ProductAddedInfo id={id}/>

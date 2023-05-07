@@ -1,0 +1,21 @@
+.block-info {
+    margin-left: 20px;
+    padding-left: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.sub-block {
+    padding: 20px;
+    background-color: antiquewhite;
+}
+
+.block-title {
+    font-family: "Comic Sans MS", serif;
+    font-size: 30px;
+}
+
+.block-text {
+    font-family: "Comic Sans MS", serif;
+    font-size: 20px;
+}
