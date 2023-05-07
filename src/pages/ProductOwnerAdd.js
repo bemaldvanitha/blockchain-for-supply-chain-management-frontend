@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import '../styles/ProductOwnerAdd.css';
 import Navbar from "../components/Navbar";
@@ -24,6 +25,7 @@ const ProductOwnerAddScreen = () => {
     const [location , setLocation] = useState('');
     const [contactNumber, setContactNumber] = useState('');
     const [contactEmail , setContactEmail] = useState('');
+    const navigate = useNavigate();
 
     const onFinish = async (values) => {
         try{
@@ -35,6 +37,7 @@ const ProductOwnerAddScreen = () => {
             });
 
             console.log('owner created');
+            navigate('/');
         }catch (err){
             console.error('something happen' ,err);
         }

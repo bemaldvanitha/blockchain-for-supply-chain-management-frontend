@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import {Button, Form, Input} from "antd";
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import axios from "axios";
 import '../styles/AddProduct.css';
 import Navbar from "../components/Navbar";
@@ -28,6 +28,7 @@ const AddProductScreen = () => {
     const [price, setPrice] = useState('');
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const onFinish = async (values) => {
         try{
@@ -40,6 +41,7 @@ const AddProductScreen = () => {
                 price: parseInt(price),
                 ownerId: id
             });
+            navigate(-1);
         }catch (err){
             console.error('something happen' ,err);
         }

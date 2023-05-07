@@ -29,7 +29,7 @@ const SelectedProductScreen = () => {
                 <Col span={10}>
                     <div className={'block-info'}>
                         <h1 className={'block-title'}>{ data.name }</h1>
-                        { data.blockchain !== undefined && data.blockchain.map(block => {
+                        { data.blockchain !== undefined && data.blockchain.slice(1).map(block => {
                             return(
                                 <BlockInfo block={ block.data } key={ JSON.stringify(block.data) }/>
                             )

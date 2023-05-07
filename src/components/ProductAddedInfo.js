@@ -51,11 +51,31 @@ const ProductAddedInfo = ({ id }) => {
                 vegetarian: vegetarian,
                 halal: halal
             });
-
+            clearData();
             console.log('info added')
         }catch (err){
             console.error('something happen');
         }
+    }
+
+    const clearData = () => {
+        setExpDate('');
+        setManDate('');
+        setQualityCertifications([]);
+        setStoreConditions('');
+        setHealthWarnings('');
+        setSugarContent('');
+        setFatContent('');
+        setSaltContent('');
+        setNutritionInfo(['']);
+        setIngredients(['']);
+        setAlergenInfo('');
+        setArtificialFlavorings(false);
+        setGmo(false);
+        setPreservation(false);
+        setVegan(false);
+        setVegetarian(false);
+        setHalal(false);
     }
 
     const handleManDateChange = (date, dateString) => {
