@@ -17,7 +17,7 @@ function App() {
             <Route path={'/'} element={ <ProductOwnerScreen/> }/>
             <Route path={'/add-owner'} element={ <ProductOwnerAddScreen/> }/>
             <Route path={'/owner/:id'} element={ <OwnerOwnedProductScreen/> }/>
-            <Route path={'/product/:id'} element={ <SelectedProductScreen/> }/>
+            <Route path={'/product/:id/:own_id'} element={ <SelectedProductScreen/> }/>
             <Route path={'/add-product/:id'} element={ <AddProductScreen/> }/>
         </Routes>
       </div>

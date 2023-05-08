@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
-import { Col, Row } from 'antd';
+import { Button, Col, Row, Alert } from 'antd';
 
 import BlockInfo from "../components/BlockInfo";
 import ProductAddedInfo from "../components/ProductAddedInfo";
@@ -10,7 +10,9 @@ import Navbar from "../components/Navbar";
 
 const SelectedProductScreen = () => {
     const [data, setData] = useState({});
-    const { id } = useParams();
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertLocation ,setAlertLocation] = useState('');
+    const { id, own_id } = useParams();
 
     async function fetchData() {
         const response = await axios.get(`http://localhost:4000/product/${id}`);
@@ -22,9 +24,38 @@ const SelectedProductScreen = () => {
         fetchData();
     },[]);
 
+    const printQr = async () => {
+        try{
+            const response = await axios.post(`http://localhost:4000/qr/`,{
+                productId: id,
+                productOwnerId: own_id
+            });
+
+            const { msg, location } = response.data;
+            setShowAlert(true);
+            setAlertLocation(location);
+
+        }catch (err){
+            console.error('Something happen!')
+        }
+    }
+
     return(
         <div>
             <Navbar isAddProd={ false } isAddOwner={ false }/>
+            <Row>
+                <Col offset={10}>
+                    <div className={'btn-container'}>
+                        <Button onClick={ printQr } type={'primary'}>Print Qr</Button>
+                    </div>
+                </Col>
+            </Row>
+            {showAlert && <Row>
+                <Col offset={6}>
+                    <Alert message={`Qr code generated and saved on ${alertLocation} location`} type={'success'}
+                           onClick={() => setShowAlert(false)} className={'alertMsg'}/>
+                </Col>
+            </Row>}
             <Row>
                 <Col span={10}>
                     <div className={'block-info'}>

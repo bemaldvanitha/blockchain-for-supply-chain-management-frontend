@@ -27,7 +27,7 @@ const ProductItem = ({ name, description, ownerId, prodId, reload }) => {
     }
 
     const selectProduct = () => {
-        navigator(`/product/${prodId}`);
+        navigator(`/product/${prodId}/${ownerId}`);
     }
 
     return(
