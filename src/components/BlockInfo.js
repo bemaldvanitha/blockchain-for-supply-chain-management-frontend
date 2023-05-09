@@ -4,7 +4,7 @@ import { Row, Col, Divider } from 'antd';
 import '../styles/BlockInfo.css';
 
 const BlockInfo = ({ block }) => {
-    //console.log(block)
+    console.log(block)
     return(
         <div className={'sub-block'}>
             {block.expDate && <Row>
@@ -155,6 +155,49 @@ const BlockInfo = ({ block }) => {
                     <p className={'block-text'}>{ block.halal === true ? 'True' : 'False' }</p>
                 </Col>
             </Row>
+            <Divider/>
+
+            {block.shippingFrom && <Row>
+                <Col>
+                    <p className={'block-text'}>Shipping From - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.shippingFrom }</p>
+                </Col>
+            </Row>}
+            {block.shippingTo && <Row>
+                <Col>
+                    <p className={'block-text'}>Shipping To - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.shippingTo }</p>
+                </Col>
+            </Row>}
+            {block.shippingMethod && <Row>
+                <Col>
+                    <p className={'block-text'}>Shipping Method - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.shippingMethod }</p>
+                </Col>
+            </Row>}
+            {block.shippingDate && <Row>
+                <Col>
+                    <p className={'block-text'}>Shipping Date - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.shippingDate }</p>
+                </Col>
+            </Row>}
+            {block.batchNum && <Row>
+                <Col>
+                    <p className={'block-text'}>Batch Number - </p>
+                </Col>
+                <Col>
+                    <p className={'block-text'}>{ block.batchNum }</p>
+                </Col>
+            </Row>}
+
             <Divider/>
         </div>
     )

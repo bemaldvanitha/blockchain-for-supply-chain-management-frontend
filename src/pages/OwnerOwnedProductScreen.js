@@ -52,11 +52,12 @@ const OwnerOwnedProductScreen = () => {
                 <Col span={12}>
                     <h1>Products</h1>
                     { productData.map(product => {
-                        //console.log(product)
+                        //console.log(product);
                         if(product !== null) {
                             return (
                                 <ProductItem key={product._id} prodId={product._id} name={product.name}
-                                             description={'blah blah blah'} ownerId={id} reload={reloadData}/>
+                                             description={product.blockchain[1].data.description}
+                                             ownerId={id} reload={reloadData}/>
                             )
                         }
                     })}
