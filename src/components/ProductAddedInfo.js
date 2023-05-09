@@ -30,6 +30,12 @@ const ProductAddedInfo = ({ id }) => {
     const [vegetarian, setVegetarian] = useState(false);
     const [halal, setHalal] = useState(false);
 
+    const [shippingFrom, setShippingFrom] = useState('');
+    const [shippingTo, setShippingTo] = useState('');
+    const [batchNum, setBatchNum] = useState('');
+    const [shippingMethod, setShippingMethod] = useState('');
+    const [shippingDate, setShippingDate] = useState('');
+
     const saveInformation = async () => {
         try{
             await axios.put(`http://localhost:4000/product/${id}`,{
@@ -51,8 +57,26 @@ const ProductAddedInfo = ({ id }) => {
                 vegetarian: vegetarian,
                 halal: halal
             });
+
             clearData();
             console.log('info added')
+        }catch (err){
+            console.error('something happen');
+        }
+    }
+
+    const saveShippingInformation = async () => {
+        try{
+            await axios.put(`http://localhost:4000/product/${id}`,{
+                shippingFrom: shippingFrom,
+                shippingTo: shippingTo,
+                shippingMethod: shippingMethod,
+                shippingDate: shippingDate,
+                batchNum: batchNum
+            });
+
+            clearShippingData();
+            console.log('shipping info added')
         }catch (err){
             console.error('something happen');
         }
@@ -77,6 +101,18 @@ const ProductAddedInfo = ({ id }) => {
         setVegetarian(false);
         setHalal(false);
     }
+
+    const clearShippingData = () => {
+        setShippingFrom('');
+        setShippingTo('');
+        setShippingMethod('');
+        setShippingDate('');
+        setBatchNum('');
+    }
+
+    const handleShippingDateChange = (date, dateString) => {
+        setShippingDate(dateString);
+    };
 
     const handleManDateChange = (date, dateString) => {
         setManDate(dateString);
@@ -115,101 +151,129 @@ const ProductAddedInfo = ({ id }) => {
     }
 
     return(
-        <div className={'form-container'}>
-            <div className={'inputContainer dateContainer'}>
-                <DatePicker label="Manufacturing date" onChange={handleManDateChange} defaultValue={moment()} />
-            </div>
-            <div className={'inputContainer dateContainer'}>
-                <DatePicker label="Expiry date" onChange={handleExpDateChange} defaultValue={moment()} />
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox.Group options={options} value={qualityCertifications} onChange={handleCheckboxChange} />
-            </div>
-            <div className={'inputContainer'}>
-                <Input value={storeConditions} onChange={e => setStoreConditions(e.target.value)}
-                       placeholder={'enter storage conditions'}/>
-            </div>
-            <div className={'inputContainer'}>
-                <Input value={healthWarnings} onChange={e => setHealthWarnings(e.target.value)}
-                       placeholder={'health warnings'}/>
-            </div>
-            <div className={'inputContainer'}>
-                <Input value={sugarContent} onChange={e => setSugarContent(e.target.value)}
-                       placeholder={'sugar content per 100g'}/>
-            </div>
-            <div className={'inputContainer'}>
-                <Input value={fatContent} onChange={e => setFatContent(e.target.value)}
-                       placeholder={'fat content per 1000g'}/>
-            </div>
-            <div className={'inputContainer'}>
-                <Input value={saltContent} onChange={e => setSaltContent(e.target.value)}
-                       placeholder={'salt content per 100g'}/>
-            </div>
+        <div>
+            <div className={'form-container'}>
+                <div className={'inputContainer dateContainer'}>
+                    <DatePicker label="Manufacturing date" onChange={handleManDateChange} defaultValue={moment()} />
+                </div>
+                <div className={'inputContainer dateContainer'}>
+                    <DatePicker label="Expiry date" onChange={handleExpDateChange} defaultValue={moment()} />
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox.Group options={options} value={qualityCertifications} onChange={handleCheckboxChange} />
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={storeConditions} onChange={e => setStoreConditions(e.target.value)}
+                           placeholder={'enter storage conditions'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={healthWarnings} onChange={e => setHealthWarnings(e.target.value)}
+                           placeholder={'health warnings'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={sugarContent} onChange={e => setSugarContent(e.target.value)}
+                           placeholder={'sugar content per 100g'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={fatContent} onChange={e => setFatContent(e.target.value)}
+                           placeholder={'fat content per 1000g'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={saltContent} onChange={e => setSaltContent(e.target.value)}
+                           placeholder={'salt content per 100g'}/>
+                </div>
 
-            <div className={'inputContainer'}>
+                <div className={'inputContainer'}>
+                    <div className={'extraButton'}>
+                        <Button className={'button'}  title={'add new nutrition'}
+                                onClick={ addNutritionField }>Add new nutrition</Button>
+                    </div>
+                    <div>
+                        { nutritionInfo.map((value, index) => (
+                            <Input value={value} placeholder={'nutrition'} key={index}
+                                   onChange={(event) => handleNutritionChange(event, index)}/>
+                        ))}
+                    </div>
+                </div>
+
+                <div className={'inputContainer'}>
+                    <div className={'extraButton'}>
+                        <Button className={'button'} title={'add new ingredient'}
+                                onClick={ addIngredientField }>Add new ingredient</Button>
+                    </div>
+                    <div>
+                        { ingredients.map((value, index) => (
+                            <Input value={value} placeholder={'ingredient'} key={index}
+                                   onChange={(event) => handleIngredientChange(event, index)}/>
+                        ))}
+                    </div>
+                </div>
+
+                <div className={'inputContainer'}>
+                    <Input value={alergenInfo} onChange={e => setAlergenInfo(e.target.value)}
+                           placeholder={'alergen information of product'}/>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={artificialFlavorings} onChange={e => setArtificialFlavorings(e.target.checked)}>
+                        Artificial flavorings include in product
+                    </Checkbox>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={gmo} onChange={e => setGmo(e.target.checked)}>
+                        Gmo ingredients include in product
+                    </Checkbox>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={preservation} onChange={e => setPreservation(e.target.checked)}>
+                        Preservations include in product
+                    </Checkbox>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={vegan} onChange={e => setVegan(e.target.checked)}>
+                        Is Product vegan friendly
+                    </Checkbox>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={vegetarian} onChange={e => setVegetarian(e.target.checked)}>
+                        Is Product vegetarian friendly
+                    </Checkbox>
+                </div>
+                <div className={'inputContainer checkboxGrp'}>
+                    <Checkbox checked={halal} onChange={e => setHalal(e.target.checked)}>
+                        Is Product halal friendly
+                    </Checkbox>
+                </div>
+
                 <div className={'extraButton'}>
-                    <Button className={'button'}  title={'add new nutrition'}
-                            onClick={ addNutritionField }>Add new nutrition</Button>
-                </div>
-                <div>
-                    { nutritionInfo.map((value, index) => (
-                        <Input value={value} placeholder={'nutrition'} key={index}
-                               onChange={(event) => handleNutritionChange(event, index)}/>
-                    ))}
+                    <Button className={'button2'} onClick={saveInformation}>Save Information</Button>
                 </div>
             </div>
 
-            <div className={'inputContainer'}>
+            <div className={'form-container'}>
+                <div className={'inputContainer'}>
+                    <Input value={shippingFrom} onChange={e => setShippingFrom(e.target.value)}
+                           placeholder={'enter where shipping from'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={shippingTo} onChange={e => setShippingTo(e.target.value)}
+                           placeholder={'enter where shipping to'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={batchNum} onChange={e => setBatchNum(e.target.value)}
+                           placeholder={'enter batch number'}/>
+                </div>
+                <div className={'inputContainer'}>
+                    <Input value={shippingMethod} onChange={e => setShippingMethod(e.target.value)}
+                           placeholder={'enter shipping method'}/>
+                </div>
+                <div className={'inputContainer dateContainer'}>
+                    <DatePicker label="Shipping date" onChange={ handleShippingDateChange } defaultValue={moment()} />
+                </div>
                 <div className={'extraButton'}>
-                    <Button className={'button'} title={'add new ingredient'}
-                            onClick={ addIngredientField }>Add new ingredient</Button>
-                </div>
-                <div>
-                    { ingredients.map((value, index) => (
-                        <Input value={value} placeholder={'ingredient'} key={index}
-                               onChange={(event) => handleIngredientChange(event, index)}/>
-                    ))}
+                    <Button className={'button2'} onClick={saveShippingInformation}>Save Shipping Information</Button>
                 </div>
             </div>
 
-            <div className={'inputContainer'}>
-                <Input value={alergenInfo} onChange={e => setAlergenInfo(e.target.value)}
-                       placeholder={'alergen information of product'}/>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={artificialFlavorings} onChange={e => setArtificialFlavorings(e.target.checked)}>
-                    Artificial flavorings include in product
-                </Checkbox>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={gmo} onChange={e => setGmo(e.target.checked)}>
-                    Gmo ingredients include in product
-                </Checkbox>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={preservation} onChange={e => setPreservation(e.target.checked)}>
-                    Preservations include in product
-                </Checkbox>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={vegan} onChange={e => setVegan(e.target.checked)}>
-                    Is Product vegan friendly
-                </Checkbox>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={vegetarian} onChange={e => setVegetarian(e.target.checked)}>
-                    Is Product vegetarian friendly
-                </Checkbox>
-            </div>
-            <div className={'inputContainer checkboxGrp'}>
-                <Checkbox checked={halal} onChange={e => setHalal(e.target.checked)}>
-                    Is Product halal friendly
-                </Checkbox>
-            </div>
-
-            <div className={'extraButton'}>
-                <Button className={'button2'} onClick={saveInformation}>Save Information</Button>
-            </div>
         </div>
     )
 }
