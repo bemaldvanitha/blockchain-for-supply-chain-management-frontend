@@ -27,7 +27,7 @@ const SelectedProductScreen = () => {
     const printQr = async () => {
         try{
             const response = await axios.post(`http://localhost:4000/qr/`,{
-                productId: id,
+                productId: data.productId,
                 productOwnerId: own_id
             });
 

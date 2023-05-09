@@ -4,7 +4,7 @@ import { Row, Col, Divider } from 'antd';
 import '../styles/BlockInfo.css';
 
 const BlockInfo = ({ block }) => {
-    console.log(block)
+    //console.log(block)
     return(
         <div className={'sub-block'}>
             {block.expDate && <Row>
